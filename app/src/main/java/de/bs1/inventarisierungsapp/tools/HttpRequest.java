@@ -1,31 +1,74 @@
 package de.bs1.inventarisierungsapp.tools;
 
+import android.util.JsonReader;
+
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
 import org.json.*;
 
 public class HttpRequest {
 
-    public void getJson(String id) throws IOException {
-        String idUrl = "defaultHostname/api/devices/:" + id;
+    public static JSONObject ajax(String Methode, String idUrl, JSONObject jsonObject) throws IOException, JSONException {
+        //String idUrl = "http://localhost/api/devices/" + id;
+        //Initializing Variable
         HttpURLConnection httpCon;
 
-        try {
-            URL url = new URL(idUrl);
-            httpCon = (HttpURLConnection) url.openConnection();
-            httpCon.setRequestMethod("GET");
 
-            httpCon.setConnectTimeout(5000);
-            httpCon.setReadTimeout(5000);
+        URL url = new URL( "http://localhost"+ idUrl);
+        httpCon = (HttpURLConnection) url.openConnection();
+        httpCon.setRequestMethod(Methode);
 
+        //Setting the Connection and the Read Timeout
+        httpCon.setConnectTimeout(5000);
+        httpCon.setReadTimeout(5000);
 
+        if (jsonObject != null) {
+            //Setting Content type of http to json
+            httpCon.addRequestProperty("content-type", "application/json");
+            String json = jsonObject.toString();
 
-            JSONObject jsonOb = new JSONObject();
-            //JSON Parse form HTTP
+            //Calculating json length in bytes
+            byte[] bytes = json.getBytes("UTF-8");
+            httpCon.setRequestProperty("content-length", Integer.toString(bytes.length));
 
-        } catch (Exception e) {
-           throw e;
+            //Saving the transformed json into the httpConnection
+            httpCon.getOutputStream().write(bytes);
         }
+
+        //Opens the connection to the server
+        httpCon.connect();
+
+        //Gathers output of the http connection
+        BufferedReader in = new BufferedReader(new InputStreamReader(httpCon.getInputStream()));
+        String inputLine;
+        StringBuilder content = new StringBuilder();
+        while ((inputLine = in.readLine()) != null) {
+            content.append(inputLine);
+        }
+        in.close();
+
+        //Saves the input type of the answer from the server
+        String contentType = httpCon.getHeaderField("content-type");
+
+        //Closes the connection to the server
+        httpCon.disconnect();
+
+
+        //Checks if the content type of the answer is a json
+        if (contentType.equalsIgnoreCase("application/json")) {
+
+            JSONObject jsonOb = new JSONObject(content.toString());
+            return jsonOb;
+
+        }
+
+        else {
+            return null;
+        }
+
     }
 }
