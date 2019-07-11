@@ -11,7 +11,7 @@ import java.net.URL;
 
 public class HttpRequest {
 
-    private static final String ENDPOINT = "http://10.244.0.106:8080";
+    private static final String ENDPOINT = "http://10.244.0.130:8080";
 
     public static JSONObject ajax(String Methode, String idUrl, JSONObject jsonObject) throws IOException, JSONException {
         //String idUrl = "http://localhost/api/devices/" + id;
