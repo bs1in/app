@@ -12,54 +12,93 @@
         android:layout_width="208dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="9dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="5dp"
         android:background="@color/colorAccent"
         android:text="Absenden"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/txtId"
-        android:layout_width="wrap_content"
-        android:layout_height="46dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="240dp"
-        android:ems="10"
-        android:hint="Geräte ID"
-        android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.99" />
+        app:layout_constraintTop_toBottomOf="@+id/chkConfirm" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="250dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/txtDesc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+        <EditText
+            android:id="@+id/txtId"
+            android:layout_width="116dp"
+            android:layout_height="46dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="240dp"
+            android:ems="10"
+            android:hint="Geräte ID"
+            android:inputType="text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <Button
+            android:id="@+id/btn_finish"
+            android:layout_width="103dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="8dp"
+            android:text="Scannen"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.56"
+            app:layout_constraintStart_toEndOf="@+id/txtId"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.48" />
+    </LinearLayout>
 
     <EditText
         android:id="@+id/txtDesc"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="113dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="5dp"
         android:ems="10"
-        android:hint="Problembeschreibung (optional)"
+        android:hint="Problembeschreibung"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toTopOf="@+id/chkConfirm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <CheckBox
         android:id="@+id/chkConfirm"
-        android:layout_width="215dp"
+        android:layout_width="248dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="5dp"
         android:text="Wirklich Defekt melden?"
         app:layout_constraintBottom_toTopOf="@+id/btnConfirm"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDesc" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -68,28 +107,13 @@
         android:layout_marginStart="2dp"
         android:layout_marginTop="2dp"
         android:layout_marginEnd="2dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/txtId"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
         app:srcCompat="@drawable/bs1in" />
-
-    <Button
-        android:id="@+id/btn_finish"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="8dp"
-        android:text="Kamera"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.56"
-        app:layout_constraintStart_toEndOf="@+id/txtId"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.48" />
 
 </android.support.constraint.ConstraintLayout>
